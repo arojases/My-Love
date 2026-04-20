@@ -55,13 +55,19 @@ La app ahora usa `hash routing`, para evitar problemas al refrescar rutas como `
 
 ## Configuracion local
 
-Antes de correr localmente, reemplaza los placeholders en [src/environments/environment.ts](/c:/Users/aroja/OneDrive/Escritorio/My-Love/src/environments/environment.ts:1) por tus valores reales.
+No pongas tus valores reales en el archivo versionado `environment.ts`.
+
+Para desarrollo local:
+
+1. Duplica [environment.local.example.ts](/c:/Users/aroja/OneDrive/Escritorio/My-Love/src/environments/environment.local.example.ts:1) como `src/environments/environment.local.ts`
+2. Rellena ahi tus datos reales de Firebase, nombres y codigo compartido
+3. Ese archivo esta ignorado por git y no se subira al repo
 
 Luego:
 
 ```bash
 npm install
-npm start
+npm run start:local
 ```
 
 ## Deploy local de reglas Firebase
