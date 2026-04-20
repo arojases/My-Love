@@ -19,6 +19,18 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+      FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+      FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+      FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+      MYLOVE_SHARED_ACCESS_CODE: ${{ secrets.MYLOVE_SHARED_ACCESS_CODE }}
+      MYLOVE_USER_NAME: ${{ secrets.MYLOVE_USER_NAME }}
+      MYLOVE_USER_AVATAR: ${{ secrets.MYLOVE_USER_AVATAR }}
+      MYLOVE_PARTNER_NAME: ${{ secrets.MYLOVE_PARTNER_NAME }}
+      MYLOVE_PARTNER_AVATAR: ${{ secrets.MYLOVE_PARTNER_AVATAR }}
 
     steps:
       - name: Checkout
@@ -30,44 +42,84 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Validate required secrets
+        run: |
+          required_vars=(
+            FIREBASE_API_KEY
+            FIREBASE_AUTH_DOMAIN
+            FIREBASE_PROJECT_ID
+            FIREBASE_STORAGE_BUCKET
+            FIREBASE_MESSAGING_SENDER_ID
+            FIREBASE_APP_ID
+            MYLOVE_SHARED_ACCESS_CODE
+            MYLOVE_USER_NAME
+            MYLOVE_USER_AVATAR
+            MYLOVE_PARTNER_NAME
+            MYLOVE_PARTNER_AVATAR
+          )
+
+          for var_name in "${required_vars[@]}"; do
+            if [ -z "${!var_name}" ]; then
+              echo "Missing required secret: ${var_name}"
+              exit 1
+            fi
+          done
+
+          case "$FIREBASE_API_KEY" in
+            YOUR_API_KEY|AIza*)
+              ;;
+            *)
+              echo "FIREBASE_API_KEY does not look valid."
+              exit 1
+              ;;
+          esac
+
       - name: Install dependencies
         run: npm ci
 
       - name: Create production environment
         run: |
-          cat <<'EOF' > src/environments/environment.prod.ts
-          import { LoveUser } from '../app/models/user.interface';
+          cat > scripts-write-env.mjs <<'EOF'
+          import { writeFileSync } from 'node:fs';
+
+          const envFile = `import { LoveUser } from '../app/models/user.interface';
           import { AppEnvironment } from './environment.model';
 
           const appUsers: LoveUser[] = [
             {
               id: 'user_you',
-              name: '${{ secrets.MYLOVE_USER_NAME }}',
-              avatar: '${{ secrets.MYLOVE_USER_AVATAR }}',
+              name: '${process.env.MYLOVE_USER_NAME}',
+              avatar: '${process.env.MYLOVE_USER_AVATAR}',
               partnerId: 'user_partner'
             },
             {
               id: 'user_partner',
-              name: '${{ secrets.MYLOVE_PARTNER_NAME }}',
-              avatar: '${{ secrets.MYLOVE_PARTNER_AVATAR }}',
+              name: '${process.env.MYLOVE_PARTNER_NAME}',
+              avatar: '${process.env.MYLOVE_PARTNER_AVATAR}',
               partnerId: 'user_you'
             }
           ];
 
           export const environment: AppEnvironment = {
             production: true,
-            sharedAccessCode: '${{ secrets.MYLOVE_SHARED_ACCESS_CODE }}',
+            sharedAccessCode: '${process.env.MYLOVE_SHARED_ACCESS_CODE}',
             firebase: {
-              apiKey: '${{ secrets.FIREBASE_API_KEY }}',
-              authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
-              projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
-              storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}',
-              messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}',
-              appId: '${{ secrets.FIREBASE_APP_ID }}'
+              apiKey: '${process.env.FIREBASE_API_KEY}',
+              authDomain: '${process.env.FIREBASE_AUTH_DOMAIN}',
+              projectId: '${process.env.FIREBASE_PROJECT_ID}',
+              storageBucket: '${process.env.FIREBASE_STORAGE_BUCKET}',
+              messagingSenderId: '${process.env.FIREBASE_MESSAGING_SENDER_ID}',
+              appId: '${process.env.FIREBASE_APP_ID}'
             },
             appUsers
           };
+          `;
+
+          writeFileSync('src/environments/environment.prod.ts', envFile);
           EOF
+
+          node scripts-write-env.mjs
+          rm scripts-write-env.mjs
 
       - name: Build app
         run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
