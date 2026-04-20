@@ -1,0 +1,72 @@
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2820: Type '"Te extraño"' is not assignable to type 'MessageCategory'. Did you mean '"Te extrano"'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/data/predefined-messages.ts:33:4:
+[37m      33 │     [32mtitle[37m: 'Te extraño',
+         ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'PredefinedMessageCategory'
+
+    src/app/data/predefined-messages.ts:4:2:
+[37m      4 │   [32mtitle[37m: MessageCategory;
+        ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2820: Type '"Buenos días"' is not assignable to type 'MessageCategory'. Did you mean '"Buenos dias"'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/data/predefined-messages.ts:55:4:
+[37m      55 │     [32mtitle[37m: 'Buenos días',
+         ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'PredefinedMessageCategory'
+
+    src/app/data/predefined-messages.ts:4:2:
+[37m      4 │   [32mtitle[37m: MessageCategory;
+        ╵   [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2820: Type '"Te extraño"' is not assignable to type 'MessageCategory'. Did you mean '"Te extrano"'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/data/predefined-messages.ts:33:4:
+[37m      33 │     [32mtitle[37m: 'Te extraño',
+         ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'PredefinedMessageCategory'
+
+    src/app/data/predefined-messages.ts:4:2:
+[37m      4 │   [32mtitle[37m: MessageCategory;
+        ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2820: Type '"Buenos días"' is not assignable to type 'MessageCategory'. Did you mean '"Buenos dias"'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/data/predefined-messages.ts:55:4:
+[37m      55 │     [32mtitle[37m: 'Buenos días',
+         ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'PredefinedMessageCategory'
+
+    src/app/data/predefined-messages.ts:4:2:
+[37m      4 │   [32mtitle[37m: MessageCategory;
+        ╵   [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'measurementId' does not exist in type '{ apiKey: string; authDomain: string; projectId: string; storageBucket: string; messagingSenderId: string; appId: string; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/environments/environment.ts:30:4:
+[37m      30 │     [32mmeasurementId[37m: "G-6CW144ZX3W"
+         ╵     [32m~~~~~~~~~~~~~[0m
+
+  The expected type comes from property 'firebase' which is declared here on type 'AppEnvironment'
+
+    src/environments/environment.model.ts:7:2:
+[37m      7 │   [32mfirebase[37m: {
+        ╵   [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'configureAuthPersistence' does not exist on type 'never'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/app.config.ts:22:28:
+[37m      22 │       await firebaseService.[32mconfigureAuthPersistence[37m();
+         ╵                             [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

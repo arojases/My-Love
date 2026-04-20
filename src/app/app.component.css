@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 173, 208, 0.3), transparent 22%),
+    linear-gradient(145deg, #fff8fb 0%, #ffeef5 45%, #ffd9e8 100%);
+}
+
+.ambient {
+  position: absolute;
+  inset: auto;
+  border-radius: 999px;
+  filter: blur(0);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ambient-left {
+  top: -8rem;
+  left: -7rem;
+  width: 18rem;
+  height: 18rem;
+  background: radial-gradient(circle, rgba(255, 123, 160, 0.4), transparent 70%);
+}
+
+.ambient-right {
+  right: -6rem;
+  bottom: -5rem;
+  width: 16rem;
+  height: 16rem;
+  background: radial-gradient(circle, rgba(255, 196, 221, 0.65), transparent 70%);
+}
+
+.app-stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.heart-burst {
+  position: absolute;
+  bottom: 0;
+  font-size: clamp(1.2rem, 1rem + 1vw, 2.4rem);
+  color: rgba(224, 62, 107, 0.75);
+  animation: floatHeart linear forwards;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.75) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh) scale(1.35) rotate(12deg);
+    opacity: 0;
+  }
+}

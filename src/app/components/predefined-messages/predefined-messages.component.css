@@ -1,0 +1,65 @@
+.library {
+  display: grid;
+  gap: 1rem;
+}
+
+.library-tabs {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.tab-button {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(247, 162, 192, 0.15);
+  color: #b43762;
+  padding: 0.72rem 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.tab-button span {
+  margin-right: 0.35rem;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  background: linear-gradient(135deg, #f06f96, #ffabc2);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.library-list {
+  display: grid;
+  gap: 0.65rem;
+  max-height: 23rem;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.message-chip {
+  border: 1px solid rgba(211, 107, 146, 0.18);
+  border-radius: 1rem;
+  background: rgba(255, 251, 253, 0.96);
+  color: #70233d;
+  text-align: left;
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.message-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(210, 89, 132, 0.42);
+  box-shadow: 0 16px 22px rgba(187, 61, 106, 0.11);
+}

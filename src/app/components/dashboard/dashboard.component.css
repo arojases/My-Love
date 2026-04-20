@@ -1,0 +1,106 @@
+.dashboard-shell {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0 1rem;
+}
+
+.topbar-kicker {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #cb4b77;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.topbar h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.5rem, 4vw, 2.3rem);
+  color: #581528;
+}
+
+.ghost-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: #ab2d57;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(183, 56, 102, 0.12);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.ghost-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(183, 56, 102, 0.18);
+}
+
+.primary-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.love-card {
+  padding: 1.2rem;
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 24px 50px rgba(183, 56, 102, 0.12);
+  color: #6c2340;
+}
+
+.love-card strong {
+  display: block;
+  margin: 0.7rem 0 0.35rem;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1;
+}
+
+.featured {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 228, 237, 0.88));
+}
+
+.pill {
+  display: inline-flex;
+  padding: 0.4rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(245, 102, 150, 0.12);
+  color: #cc4372;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-panels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

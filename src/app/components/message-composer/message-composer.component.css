@@ -1,0 +1,95 @@
+.composer-card {
+  display: grid;
+  gap: 1.2rem;
+  padding: 1.35rem;
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 24px 50px rgba(183, 56, 102, 0.12);
+}
+
+.section-heading h2 {
+  margin: 0.55rem 0 0.45rem;
+  color: #61182f;
+  font-size: 1.7rem;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #83475c;
+  line-height: 1.7;
+}
+
+.section-chip {
+  display: inline-flex;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(246, 117, 162, 0.13);
+  color: #cb4371;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.composer-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field span {
+  color: #70233e;
+  font-weight: 700;
+}
+
+.field textarea {
+  width: 100%;
+  border: 1px solid rgba(209, 100, 138, 0.16);
+  border-radius: 1.15rem;
+  background: rgba(255, 251, 253, 0.95);
+  padding: 0.95rem 1rem;
+  font: inherit;
+  color: #5f1c31;
+  resize: vertical;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(207, 78, 124, 0.58);
+  box-shadow: 0 0 0 4px rgba(244, 145, 178, 0.14);
+}
+
+.send-button {
+  border: 0;
+  border-radius: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(135deg, #e94f7d, #ff8fb2);
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 20px 32px rgba(220, 72, 123, 0.22);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease;
+}
+
+.send-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 24px 34px rgba(220, 72, 123, 0.28);
+  filter: saturate(1.08);
+}
+
+.send-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}

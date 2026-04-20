@@ -1,0 +1,42 @@
+<section class="history-card">
+  <div class="history-heading">
+    <div>
+      <span class="section-chip">Historial vivo</span>
+      <h2>Su conversación</h2>
+    </div>
+    <p>Todo queda guardado con fecha, remitente, categoría y estado de lectura.</p>
+  </div>
+
+  @if (vm$ | async; as vm) {
+    <div class="message-stream" [@listAnimation]="vm.messages.length">
+      @for (message of vm.messages; track trackMessage($index, message)) {
+        <article
+          class="message-bubble"
+          [class.mine]="message.senderId === vm.currentUser?.id"
+          [class.received]="message.receiverId === vm.currentUser?.id"
+        >
+          <div class="message-meta">
+            <strong>
+              {{ message.senderId === vm.currentUser?.id ? 'Tú' : (vm.partner?.name ?? 'Tu pareja') }}
+            </strong>
+            <span>{{ message.category }}</span>
+          </div>
+
+          <p>{{ message.content }}</p>
+
+          <footer>
+            <time>{{ formatCreatedAt(message.createdAt) | date: 'medium' }}</time>
+            <span class="status-pill" [class.unread]="!message.read">
+              {{ message.read ? 'Leído' : 'No leído' }}
+            </span>
+          </footer>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <strong>Aún no hay mensajes.</strong>
+          <p>Empieza con un “buenos días” o elige un mensaje de la biblioteca romántica.</p>
+        </div>
+      }
+    </div>
+  }
+</section>

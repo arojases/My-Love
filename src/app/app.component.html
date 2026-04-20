@@ -1,0 +1,23 @@
+<div class="app-shell">
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <div class="floating-hearts" aria-hidden="true">
+    @for (heart of hearts$ | async; track trackHeart($index, heart)) {
+      <span
+        class="heart-burst"
+        [style.left.%]="heart.left"
+        [style.animationDuration.ms]="heart.duration"
+        [style.animationDelay.ms]="heart.delay"
+      >
+        ♥
+      </span>
+    }
+  </div>
+
+  <app-notifications></app-notifications>
+
+  <main class="app-stage" [@routeTransition]="true">
+    <router-outlet></router-outlet>
+  </main>
+</div>

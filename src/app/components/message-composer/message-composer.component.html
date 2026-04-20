@@ -1,0 +1,27 @@
+<section class="composer-card">
+  <div class="section-heading">
+    <span class="section-chip">Enviar amor</span>
+    <h2>Escribe o selecciona un detalle</h2>
+    <p>
+      Tienes {{ totalPredefinedMessages }} mensajes predefinidos y tambien puedes redactar algo
+      totalmente personal.
+    </p>
+  </div>
+
+  <form class="composer-form" [formGroup]="form" (ngSubmit)="send()">
+    <label class="field">
+      <span>Mensaje</span>
+      <textarea
+        rows="5"
+        formControlName="content"
+        placeholder="Escribe algo que le haga sonreir..."
+      ></textarea>
+    </label>
+
+    <button class="send-button" type="submit" [disabled]="isSending">
+      {{ isSending ? 'Enviando...' : 'Enviar mensaje ♥' }}
+    </button>
+  </form>
+
+  <app-predefined-messages (selectMessage)="fillMessage($event)"></app-predefined-messages>
+</section>

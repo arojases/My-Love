@@ -1,0 +1,41 @@
+@if (currentUser$ | async; as currentUser) {
+  <section class="dashboard-shell">
+    <header class="topbar">
+      <div class="topbar-copy">
+        <span class="topbar-kicker">My Love</span>
+        <h1>{{ currentUser.name }} y {{ (partner$ | async)?.name }}</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <button type="button" class="ghost-button" (click)="logout()">Cerrar sesion</button>
+      </div>
+    </header>
+
+    <section class="primary-stack">
+      <app-message-composer></app-message-composer>
+      <app-message-list></app-message-list>
+    </section>
+
+    <section class="hero-panels">
+      @if (stats$ | async; as stats) {
+        <article class="love-card featured">
+          <span class="pill">No leidos</span>
+          <strong>{{ stats.unread }}</strong>
+          <p>Los mensajes nuevos aparecen al instante cuando entran en la conversacion.</p>
+        </article>
+
+        <article class="love-card">
+          <span class="pill">Enviados</span>
+          <strong>{{ stats.sent }}</strong>
+          <p>Todo lo que envias queda guardado en el historial compartido.</p>
+        </article>
+
+        <article class="love-card">
+          <span class="pill">Recibidos</span>
+          <strong>{{ stats.received }}</strong>
+          <p>La app actualiza el chat automaticamente sin tener que recargar.</p>
+        </article>
+      }
+    </section>
+  </section>
+}

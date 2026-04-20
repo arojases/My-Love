@@ -1,0 +1,98 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  position: relative;
+  width: min(100%, 28rem);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 30px 70px rgba(171, 47, 95, 0.16);
+  overflow: hidden;
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, rgba(255, 160, 190, 0.32), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.card-content {
+  position: relative;
+  padding: 2rem 1.5rem;
+}
+
+.login-card h1 {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-size: clamp(2.5rem, 9vw, 4rem);
+  line-height: 1;
+  color: #60182e;
+}
+
+.login-form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field span {
+  color: #70233e;
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid rgba(209, 100, 138, 0.16);
+  border-radius: 1.15rem;
+  background: rgba(255, 251, 253, 0.95);
+  padding: 0.95rem 1rem;
+  font: inherit;
+  color: #5f1c31;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: rgba(207, 78, 124, 0.58);
+  box-shadow: 0 0 0 4px rgba(244, 145, 178, 0.14);
+}
+
+.enter-button {
+  border: 0;
+  border-radius: 1.2rem;
+  padding: 1rem 1.2rem;
+  margin-top: 0.3rem;
+  background: linear-gradient(135deg, #e94f7d, #ff8fb2);
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 20px 32px rgba(220, 72, 123, 0.22);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease;
+}
+
+.enter-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 24px 34px rgba(220, 72, 123, 0.28);
+  filter: saturate(1.08);
+}
+
+.enter-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}

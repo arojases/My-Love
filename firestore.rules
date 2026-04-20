@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAllowedUser(userId) {
+      return userId in ['user_you', 'user_partner'];
+    }
+
+    function isParticipant(senderId, receiverId) {
+      return isSignedIn() &&
+        isAllowedUser(senderId) &&
+        isAllowedUser(receiverId);
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && isAllowedUser(userId);
+      allow create, update: if isSignedIn() && isAllowedUser(userId);
+    }
+
+    match /messages/{messageId} {
+      allow read: if isSignedIn();
+      allow create: if isParticipant(request.resource.data.senderId, request.resource.data.receiverId);
+      allow update: if isSignedIn() &&
+        isParticipant(resource.data.senderId, resource.data.receiverId) &&
+        request.resource.data.diff(resource.data).changedKeys().hasOnly(['read']);
+      allow delete: if false;
+    }
+  }
+}

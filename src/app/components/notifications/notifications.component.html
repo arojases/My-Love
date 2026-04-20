@@ -1,0 +1,11 @@
+<div class="toast-stack">
+  @for (toast of toasts$ | async; track toast.id) {
+    <aside class="toast-card" [@toastAnimation] [class.warning]="toast.type === 'warning'">
+      <div class="toast-copy">
+        <strong>{{ toast.title }}</strong>
+        <p>{{ toast.body }}</p>
+      </div>
+      <button type="button" (click)="dismiss(toast.id)" aria-label="Cerrar notificación">×</button>
+    </aside>
+  }
+</div>

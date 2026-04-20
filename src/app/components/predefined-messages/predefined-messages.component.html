@@ -1,0 +1,27 @@
+<div class="library">
+  <div class="library-tabs" role="tablist" aria-label="Categorías románticas">
+    @for (category of categories; track category.title) {
+      <button
+        type="button"
+        class="tab-button"
+        [class.active]="activeCategory === category.title"
+        (click)="setCategory(category.title)"
+      >
+        <span>{{ category.icon }}</span>
+        {{ category.title }}
+      </button>
+    }
+  </div>
+
+  @for (category of categories; track category.title) {
+    @if (category.title === activeCategory) {
+      <div class="library-list">
+        @for (message of category.messages; track message) {
+          <button type="button" class="message-chip" (click)="pickMessage(message, category.title)">
+            {{ message }}
+          </button>
+        }
+      </div>
+    }
+  }
+</div>

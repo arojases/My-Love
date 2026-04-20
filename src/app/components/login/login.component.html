@@ -1,0 +1,24 @@
+<section class="login-page">
+  <div class="login-card">
+    <div class="card-glow"></div>
+    <div class="card-content">
+      <h1>My&#9829;Love</h1>
+
+      <form class="login-form" [formGroup]="form" (ngSubmit)="login()">
+        <label class="field">
+          <span>Nombre de usuario</span>
+          <input type="text" formControlName="name" placeholder="Escribe tu nombre" />
+        </label>
+
+        <label class="field">
+          <span>Codigo compartido</span>
+          <input type="password" formControlName="accessCode" placeholder="Ingresa el codigo" />
+        </label>
+
+        <button class="enter-button" type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Entrando...' : 'Entrar a My♥Love' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
