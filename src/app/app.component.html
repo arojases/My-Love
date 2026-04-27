@@ -2,6 +2,28 @@
   <div class="ambient ambient-left"></div>
   <div class="ambient ambient-right"></div>
 
+  @if (!isStandalone()) {
+    <section class="install-banner" aria-label="Instalar aplicacion">
+      <div class="install-copy">
+        <strong>{{ appName }}</strong>
+
+        @if (canInstall()) {
+          <p>Pon esta app en la pantalla principal de tu celular para entrar directo y ver tus mensajes mas rapido.</p>
+        } @else if (showIosHint()) {
+          <p>En iPhone toca Compartir y luego "Agregar a pantalla de inicio" para dejarla como app.</p>
+        } @else {
+          <p>Abre esta pagina desde el navegador del celular y usa la opcion de agregar a la pantalla principal.</p>
+        }
+      </div>
+
+      @if (canInstall()) {
+        <button type="button" class="install-action" (click)="installApp()">
+          Instalar
+        </button>
+      }
+    </section>
+  }
+
   <div class="floating-hearts" aria-hidden="true">
     @for (heart of hearts$ | async; track trackHeart($index, heart)) {
       <span
@@ -10,7 +32,7 @@
         [style.animationDuration.ms]="heart.duration"
         [style.animationDelay.ms]="heart.delay"
       >
-        ♥
+        &#9829;
       </span>
     }
   </div>

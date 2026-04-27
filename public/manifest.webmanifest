@@ -1,0 +1,25 @@
+{
+  "name": "My Love",
+  "short_name": "My Love",
+  "description": "Mensajes bonitos para tener siempre a mano en tu celular.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff8fb",
+  "theme_color": "#ff7aa8",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
